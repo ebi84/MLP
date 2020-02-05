@@ -47,7 +47,7 @@ public:
 
 	DeepModel(int t_num_feature, int t_num_train, int t_num_output); // constructor
 	~DeepModel(); // destructor
-
+	DeepModel(const DeepModel& other) = delete;
 
 	vector<float>costs; // stores costs during training
 
@@ -113,6 +113,23 @@ private:
 				}
 			}
 		}
+
+		Layer(Layer& other) = delete;
+
+		Layer(Layer&& other)
+		{
+			type = other.type;
+			activation = other.activation;
+			weight_initializer = other.weight_initializer;
+			num_input = other.num_input;
+			num_hidden = other.num_hidden;
+			num_output = other.num_output;
+			weight = move(other.weight); other.weight = nullptr;
+			bias = move(other.bias); other.bias = nullptr;
+			input = move(other.input); other.input = nullptr;
+			output = move(other.output); other.output = nullptr;
+			//cout << "Layer move is called" << endl;
+		}
 	};
 
 
@@ -148,6 +165,21 @@ private:
 				dev_bias = new float[num_hidden];
 				dev_output = new float[num_input * num_output];
 			}
+		}
+
+		Grad(Grad& other) = delete;
+
+		Grad(Grad&& other)
+		{
+			type = other.type;
+			num_input = other.num_input;
+			num_hidden = other.num_hidden;
+			num_output = other.num_output;
+			dev_weight = move(other.dev_weight); other.dev_weight = nullptr;
+			dev_bias = move(other.dev_bias); other.dev_bias = nullptr;
+			dev_input = move(other.dev_input); other.dev_input = nullptr;
+			dev_output = move(other.dev_output); other.dev_output = nullptr;
+			//cout << "Grad move is called" << endl;
 		}
 	};
 
