@@ -57,10 +57,10 @@ int DeepModel::AddLayer(string t_type, int t_num_hidden, string t_activation)
 	int tmp_num_input = (0 == count_layers_ ? num_feature_ :
 		layers_[count_layers_ - 1].num_hidden);
 
-	layers_.emplace_back(Layer(t_type, t_activation, weight_initializer_,
-		tmp_num_input, t_num_hidden, num_train_));
+	layers_.emplace_back(move(Layer(t_type, t_activation, weight_initializer_,
+		tmp_num_input, t_num_hidden, num_train_)));
 
-	grads_.emplace_back(Grad(t_type, tmp_num_input, t_num_hidden, num_train_));
+	grads_.emplace_back(move(Grad(t_type, tmp_num_input, t_num_hidden, num_train_)));
 	count_layers_++;
 
 	return 0;
