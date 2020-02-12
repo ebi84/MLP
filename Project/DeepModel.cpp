@@ -45,8 +45,7 @@ DeepModel::~DeepModel()
 
 
 
-// this function adds a dense layer to the model and initializes all attributes and weights
-// for Layer and Grad structures
+// A function for initializing Add_Layer and Add_Grad functions
 int DeepModel::AddLayer(string t_type, int t_num_hidden, string t_activation)
 {
 	if ("Dense" != t_type)
@@ -57,10 +56,8 @@ int DeepModel::AddLayer(string t_type, int t_num_hidden, string t_activation)
 	int tmp_num_input = (0 == count_layers_ ? num_feature_ :
 		layers_[count_layers_ - 1].num_hidden);
 
-	layers_.emplace_back(move(Layer(t_type, t_activation, weight_initializer_,
-		tmp_num_input, t_num_hidden, num_train_)));
-
-	grads_.emplace_back(move(Grad(t_type, tmp_num_input, t_num_hidden, num_train_)));
+	Add_Layer(t_type, t_activation, weight_initializer_, tmp_num_input, t_num_hidden, num_train_);
+	Add_Grad(t_type, tmp_num_input, t_num_hidden, num_train_);
 	count_layers_++;
 
 	return 0;
