@@ -47,7 +47,7 @@ public:
 
 	DeepModel(int t_num_feature, int t_num_train, int t_num_output); // constructor
 	~DeepModel(); // destructor
-	DeepModel(const DeepModel& other) = delete;
+	DeepModel(const DeepModel&) = delete;
 
 	vector<float>costs; // stores costs during training
 
@@ -114,7 +114,7 @@ private:
 			}
 		}
 
-		Layer(Layer& other) = delete;
+		Layer(const Layer&) = delete;
 
 		Layer(Layer&& other)
 		{
@@ -167,7 +167,7 @@ private:
 			}
 		}
 
-		Grad(Grad& other) = delete;
+		Grad(const Grad&) = delete;
 
 		Grad(Grad&& other)
 		{
@@ -213,6 +213,20 @@ private:
 	auto FeedForward(float* X, int* Y, int iter)->void;
 	auto BackPropagate(float* X, int* Y)->void;
 	auto UpdateWeights()->void;
+
+	// template function for adding a layer to layers_
+	template<typename... Args>
+	void Add_Layer(Args&&... val)
+	{
+		layers_.emplace_back(forward<Args>(val)...);
+	}
+
+	// template function for adding a layer to grads_
+	template<typename... Args>
+	void Add_Grad(Args&&... val)
+	{
+		grads_.emplace_back(forward<Args>(val)...);
+	}
 };
 
 
