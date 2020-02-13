@@ -6,7 +6,7 @@ stored in a struct called "Layer" and the info and gradients for backpropagation
 in a struct called "Grad". A new Layer and a Grad are added to DeepModel object once a layer is added to 
 the model. To use the code follow the below rules:
 
-## Data Entry 
+### Data Entry 
 Input data is stored in a CSV file. LoadData function reads this file and stores data to X_train and Y_train.
 The current implementation of the code uses the entire dataset for training. You can split data to two training 
 and test sets by yourself.
