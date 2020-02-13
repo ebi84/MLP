@@ -35,3 +35,4 @@ training samples. The function returns the accuracy score.
 array with size num_test which returns the classification results. 
 
 ![alt text](2020-02-12.png)
+Training and test results using MNIST data set after 600 iterations.
