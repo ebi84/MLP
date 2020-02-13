@@ -33,3 +33,5 @@ training samples. The function returns the accuracy score.
 ## Testing 
 `Classify(X_test, Y_pred, num_test)` can be used to classify the input `X_test`. `Y_pred` is a dinamically allocated 
 array with size num_test which returns the classification results. 
+
+![alt text](2020-02-12.png)
