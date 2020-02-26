@@ -1,5 +1,6 @@
 # MLP
 multi-layer perceptron implementation in C++
+
 This code allows for training a fully-connected neural network for classification with arbitrary size and 
 number of layers. It uses OpenMP to speed up code execution. All the info and weights for each layer are 
 stored in a struct called `Layer` and the info and gradients for backpropagation of each layer are stored 
